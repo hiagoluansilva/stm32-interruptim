@@ -1,0 +1,12 @@
+Debug/
+Release/
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.d
+*.o
+*.a
+*.su
+*.launch
