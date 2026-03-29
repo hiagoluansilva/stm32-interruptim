@@ -1,44 +1,28 @@
+🇧🇷 Português | 🇺🇸 [English](#english)
+
 # stm32-interruptim
 
-Exemplo de timer com interrupção no STM32F4xx — pisca LED e ajuste de velocidade por botão.
+Timer TIM10 com IRQ: pisca LED em PA5 e ajuste de velocidade pelo botão PC13.
 
-## Descrição
-
-Projeto didático que demonstra o uso do TIM10 com interrupção (IRQ) para piscar um LED. A frequência de pisca é alterada dinamicamente via botão: ao pressionar PC13, o LED passa de 250 ms para 10 ms (pisca mais rápido).
-
-## Hardware
-
-- Microcontrolador: STM32F4xx
-- LED: PA5
-- Botão: PC13
-
-## Configuração do Timer
-
-```c
-TIM10->PSC = PSC_1us;   // 16000-1 → resolução de 1 µs
-TIM10->ARR = ARR_250ms; // 250 contagens → 250 ms (normal)
-//           ARR_10ms   // 10 contagens → 10 ms (botão pressionado)
-```
-
-## ISR do Timer
-
-```c
-void TIM1_UP_TIM10_IRQHandler(void) {
-    TIM10->SR &= ~TIM_SR_UIF;  // Limpa flag
-    GPIOA->ODR ^= LedPin;      // Toggle LED
-}
-```
-
-## Conceitos demonstrados
-
-- Configuração de interrupção de timer (TIM10 → `TIM1_UP_TIM10_IRQn`)
-- NVIC: `NVIC_EnableIRQ` e `NVIC_SetPriority`
-- Alteração do `ARR` em tempo de execução
+**PSC:** 16000-1 · **ARR:** 250 ms (normal) / 10 ms (botão)
 
 ## IDE
 
-Atollic TrueSTUDIO 9.3
+Atollic TrueSTUDIO 9.3 / STM32CubeIDE
+Centro Tecnológico Liberato — Novo Hamburgo/RS
 
-## Autor
+---
 
-Prof. Marcos Zuccolotto — Centro Tecnológico Liberato
+<a name="english"></a>
+🇧🇷 [Português](#) | 🇺🇸 English
+
+# stm32-interruptim
+
+TIM10 with IRQ: blink LED on PA5, speed adjusted by button PC13.
+
+**PSC:** 16000-1 · **ARR:** 250 ms (normal) / 10 ms (button pressed)
+
+## IDE
+
+Atollic TrueSTUDIO 9.3 / STM32CubeIDE
+Centro Tecnológico Liberato — Novo Hamburgo/RS, Brazil
